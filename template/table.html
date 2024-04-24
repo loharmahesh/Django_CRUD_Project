@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Database</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+
+<h2>Employee Database</h2>
+
+<table>
+{% csrf_token %}
+    <tr><a href="/"><button type="button">Add Employee</button></a></tr>
+    <tr>
+        <th>Sr NO</th>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Employee Salary</th>
+        <th>Employee Position</th>
+        <th>Employee Blood Group</th>
+        <th>Employee Age</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+ 
+
+    {% for i in employee %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.id}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.salary}}</td>
+        <td>{{i.position}}</td>
+        <td>{{i.blood_g}}</td>
+        <td>{{i.age}}</td>
+
+        <td><a href="/delete/{{i.id}}"><button type="delete">Delete</button></a></td>
+        <td><a href="/update/{{i.id}}"><button type="update">Update</button></a></td>
+    {% endfor %}
+    </tr>
+  
+</table>
+
+</body>
+</html>
